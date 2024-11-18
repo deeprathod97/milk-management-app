@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faCalendarAlt, faUser, faClock } from "@fortawesome/free-solid-svg-icons";
 
 const MilkTable = ({ records, deleteRecord }) => {
   const calculateTotal = (field) =>
@@ -10,10 +12,10 @@ const MilkTable = ({ records, deleteRecord }) => {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
+            <th><FontAwesomeIcon icon={faUser} /> Name</th>
             <th>Quantity (L)</th>
-            <th>Date</th>
-            <th>Time</th>
+            <th><FontAwesomeIcon icon={faCalendarAlt} /> Date</th>
+            <th><FontAwesomeIcon icon={faClock} /> Time</th>
             <th>Amount</th>
             <th>Month</th>
             <th>Actions</th>
@@ -33,7 +35,7 @@ const MilkTable = ({ records, deleteRecord }) => {
                   className="delete-button"
                   onClick={() => deleteRecord(index)}
                 >
-                  Delete
+                  <FontAwesomeIcon icon={faTrash} /> Delete
                 </button>
               </td>
             </tr>

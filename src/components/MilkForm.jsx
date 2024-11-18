@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const MilkForm = ({ addRecord }) => {
   const [formData, setFormData] = useState({
@@ -28,12 +30,11 @@ const MilkForm = ({ addRecord }) => {
       return;
     }
 
-    // Convert 24-hour time to 12-hour format with AM/PM
     const timeParts = formData.time.split(":");
     let hours = parseInt(timeParts[0]);
     const minutes = timeParts[1];
     const ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12 || 12; // Convert "0" to "12" for 12-hour format
+    hours = hours % 12 || 12;
     const formattedTime = `${hours}:${minutes} ${ampm}`;
 
     addRecord({ ...formData, time: formattedTime });
@@ -88,7 +89,9 @@ const MilkForm = ({ addRecord }) => {
         placeholder="Month (e.g., Nov)"
         required
       />
-      <button type="submit">Add Record</button>
+      <button type="submit">
+        <FontAwesomeIcon icon={faPlus} /> Add Record
+      </button>
     </form>
   );
 };
