@@ -13,6 +13,7 @@ const MilkTable = ({ records, deleteRecord }) => {
             <th>Name</th>
             <th>Quantity (L)</th>
             <th>Date</th>
+            <th>Time</th>
             <th>Amount</th>
             <th>Month</th>
             <th>Actions</th>
@@ -24,6 +25,7 @@ const MilkTable = ({ records, deleteRecord }) => {
               <td>{record.name}</td>
               <td>{record.quantity}</td>
               <td>{record.date}</td>
+              <td>{record.time}</td>
               <td>{record.amount}</td>
               <td>{record.month}</td>
               <td>
@@ -41,6 +43,7 @@ const MilkTable = ({ records, deleteRecord }) => {
           <tr>
             <td>Total</td>
             <td>{calculateTotal("quantity")}</td>
+            <td></td>
             <td></td>
             <td>{calculateTotal("amount")}</td>
             <td></td>

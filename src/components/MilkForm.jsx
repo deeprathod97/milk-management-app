@@ -5,6 +5,7 @@ const MilkForm = ({ addRecord }) => {
     name: "",
     quantity: "",
     date: "",
+    time: "",
     amount: "",
     month: "",
   });
@@ -15,12 +16,28 @@ const MilkForm = ({ addRecord }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.quantity || !formData.amount || !formData.date || !formData.month) {
+    if (
+      !formData.name ||
+      !formData.quantity ||
+      !formData.amount ||
+      !formData.date ||
+      !formData.time ||
+      !formData.month
+    ) {
       alert("Please fill in all fields.");
       return;
     }
-    addRecord(formData);
-    setFormData({ name: "", quantity: "", date: "", amount: "", month: "" });
+
+    // Convert 24-hour time to 12-hour format with AM/PM
+    const timeParts = formData.time.split(":");
+    let hours = parseInt(timeParts[0]);
+    const minutes = timeParts[1];
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12; // Convert "0" to "12" for 12-hour format
+    const formattedTime = `${hours}:${minutes} ${ampm}`;
+
+    addRecord({ ...formData, time: formattedTime });
+    setFormData({ name: "", quantity: "", date: "", time: "", amount: "", month: "" });
   };
 
   return (
@@ -45,6 +62,13 @@ const MilkForm = ({ addRecord }) => {
         type="date"
         name="date"
         value={formData.date}
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="time"
+        name="time"
+        value={formData.time}
         onChange={handleChange}
         required
       />
